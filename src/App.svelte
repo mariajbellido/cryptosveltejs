@@ -15,13 +15,23 @@
 		coins = data;
 	}
 	loadCoins()
+
+	const searchCoin = (value) => {
+		// console.log("Searching " + value)
+		coins = coins.filter((coin) => coin.name.toLowerCase().includes(value.toLowerCase()) ||
+				coin.symbol.toLowerCase().includes(value.toLowerCase())
+		);
+	};
+
 </script>
 
 <div class="container">
 	<div class="row">
-		<h1>
+		<h1 class="text-center display-1 mb-5">
 			CryptoSvelte App
 		</h1>
+
+		<input type="text" class="form-control bg-dark text-white rounded-0 border-0 my-4" placeholder="Search your crypto here" on:keyup={({target: {value}}) => searchCoin(value)}>
 		<table class="table table-dark">
 			<thead>
 			<tr>
@@ -44,6 +54,15 @@
 						<span class="text-muted text-uppercase ms-2">
 							{coin.symbol}
 						</span>
+					</td>
+					<td>
+						{coin.current_price.toLocaleString()} €
+					</td>
+					<td class={coin.price_change_percentage_24h > 0 ? "text-success" : "text-danger"}>
+						{coin.price_change_percentage_24h.toLocaleString()} %
+					</td>
+					<td>
+						{coin.total_volume.toLocaleString()}
 					</td>
 
 				</tr>
