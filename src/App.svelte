@@ -1,5 +1,11 @@
 <script>
-
+	let titles = [
+			"#",
+			"Coin",
+			"Price",
+			"Price Change",
+			"24h Volume"
+	]
 	let coins = []
 
 	const loadCoins = async() => {
@@ -14,20 +20,32 @@
 <div class="container">
 	<div class="row">
 		<h1>
-			Hello World
+			CryptoSvelte App
 		</h1>
 		<table class="table table-dark">
 			<thead>
 			<tr>
-				<th> bla bla bla</th>
+				{#each titles as title}
+					<th>{title}</th>
+				{/each}
 			</tr>
 			</thead>
 			<tbody>
-			{#each coins as coin}
+			{#each coins as coin, i}
 				<tr>
-					<td>
-						{coin.name}
+					<td class="text-muted">
+						{i + 1}
 					</td>
+					<td>
+						<img src={coin.image} alt={coin.name} style="width: 2rem;" class="img-fluid me-2">
+						<span>
+							{coin.name}
+						</span>
+						<span class="text-muted text-uppercase ms-2">
+							{coin.symbol}
+						</span>
+					</td>
+
 				</tr>
 			{/each}
 
