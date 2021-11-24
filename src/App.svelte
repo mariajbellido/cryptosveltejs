@@ -6,19 +6,22 @@
 			"Price Change",
 			"24h Volume"
 	]
-	let coins = []
+	let coins = [];
+
+	let filteredCoins = [];
 
 	const loadCoins = async() => {
 		const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false')
 		const data = await res.json()
 		console.log(data)
 		coins = data;
+		filteredCoins = data;
 	}
 	loadCoins()
 
 	const searchCoin = (value) => {
 		// console.log("Searching " + value)
-		coins = coins.filter((coin) => coin.name.toLowerCase().includes(value.toLowerCase()) ||
+		filteredCoins = coins.filter((coin) => coin.name.toLowerCase().includes(value.toLowerCase()) ||
 				coin.symbol.toLowerCase().includes(value.toLowerCase())
 		);
 	};
@@ -41,7 +44,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			{#each coins as coin, i}
+			{#each filteredCoins as coin, i}
 				<tr>
 					<td class="text-muted">
 						{i + 1}
