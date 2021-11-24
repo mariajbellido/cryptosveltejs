@@ -11,27 +11,33 @@
 	loadCoins()
 </script>
 
-<h1>
-	Hello World
-</h1>
-<table>
-	<thead>
-		<tr>
-			<th> bla bla bla</th>
-		</tr>
-	</thead>
-	<tbody>
-	{#each coins as coin}
-		<tr>
-			<td>
-				{coin.name}
-			</td>
-		</tr>
-	{/each}
+<div class="container">
+	<div class="row">
+		<h1>
+			Hello World
+		</h1>
+		<table class="table table-dark">
+			<thead>
+			<tr>
+				<th> bla bla bla</th>
+			</tr>
+			</thead>
+			<tbody>
+			{#each coins as coin}
+				<tr>
+					<td>
+						{coin.name}
+					</td>
+				</tr>
+			{/each}
 
-	</tbody>
+			</tbody>
 
-</table>
+		</table>
+	</div>
+
+</div>
+
 
 
 <style>
