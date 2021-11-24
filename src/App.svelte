@@ -1,4 +1,7 @@
 <script>
+
+	import { onMount } from "svelte";
+
 	let titles = [
 			"#",
 			"Coin",
@@ -9,6 +12,8 @@
 	let coins = [];
 
 	let filteredCoins = [];
+
+	let ref = null;
 
 	const loadCoins = async() => {
 		const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false')
@@ -26,6 +31,10 @@
 		);
 	};
 
+	onMount( () => {
+		ref.focus()
+	})
+
 </script>
 
 <div class="container">
@@ -34,7 +43,13 @@
 			CryptoSvelte App
 		</h1>
 
-		<input type="text" class="form-control bg-dark text-white rounded-0 border-0 my-4" placeholder="Search your crypto here" on:keyup={({target: {value}}) => searchCoin(value)}>
+		<input
+				type="text"
+				class="form-control bg-dark text-white rounded-0 border-0 my-4"
+				placeholder="Search your crypto here"
+				on:keyup={({target: {value}}) => searchCoin(value)}
+				bind:this={ref}
+		>
 		<table class="table table-dark">
 			<thead>
 			<tr>
